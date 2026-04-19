@@ -1,3 +1,28 @@
 spring:
   application:
     name: bootcamp17
+
+  # konfigurasi database
+  datasource:
+    # jdbc:nama_db://host:port/nama_schema
+    url: jdbc:postgresql://localhost:5432/training_db
+    username: postgres
+    password: postgres
+
+  # JPA (Java Persistence API) & Hibernate: penghubung antara Object Java dan Tabel Database
+  jpa:
+    hibernate:
+      # ddl-auto: Mengatur perilaku pembuatan tabel otomatis
+      # 'update': Spring akan otomatis buat/ubah tabel sesuai entity Java tanpa hapus data
+      ddl-auto: update
+
+    # Menampilkan query SQL yang dijalankan Spring di console/terminal
+    show-sql: true
+
+    properties:
+      hibernate:
+        # Membuat tampilan SQL di console jadi rapi dan mudah dibaca (tidak satu baris)
+        format_sql: true
+
+    # Memberitahu Hibernate "dialek" SQL mana yang digunakan (PostgreSQL)
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
