@@ -21,12 +21,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public CreateUserResponse createUser(UserRequestDto req) {
+        // practice: tambahin penjagaan email sudah ada (print aja)
         UserEntity user =new UserEntity();
         user.setFirstName(req.getFirstName());
         user.setLastName(req.getLastName());
         user.setEmail(req.getEmail());
 
         // cara lain
+        // pake @Builder di entity
 //        UserEntity user = UserEntity.builder()
 //                .fullName(request.getFullName())
 //                .email(request.getEmail())
@@ -36,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
         return new CreateUserResponse(
-                user.getFirstName() + user.getLastName()
+                user.getFirstName() + " " + user.getLastName()
         );
     }
 
@@ -53,7 +55,7 @@ public class UserServiceImpl implements UserService {
         }
         UserEntity user = userOpt.get();
         return new CreateUserResponse(
-                user.getFirstName() + user.getLastName()
+                user.getFirstName() + " " + user.getLastName()
         );
     }
 
@@ -61,8 +63,10 @@ public class UserServiceImpl implements UserService {
     public CreateUserResponse updateUser(Long id, UserRequestDto request) {
         Optional<UserEntity> userOpt = userRepository.findById(id);
         if (userOpt.isEmpty()){
-            return new CreateUserResponse("kosong"); // cara handle yang lebih baik di day 3
+            throw new RuntimeException("Error"); // cara handle yang lebih baik di day 3
         }
+
+        // practice: tambahin penjagaan email sudah ada (print aja)
         UserEntity user = userOpt.get();
 
         user.setFirstName(request.getFirstName());

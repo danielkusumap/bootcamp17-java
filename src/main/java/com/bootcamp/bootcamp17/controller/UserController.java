@@ -25,12 +25,6 @@ public class UserController {
             @Valid @RequestBody UserRequestDto request
     ) {
 
-//        UserEntity result = userService.create(request);
-//
-//        BaseResponse<UserEntity> response = new BaseResponse<>();
-//        response.setMessage("Success create user");
-//        response.setData(result);
-
         CreateUserResponse user = userService.createUser(request);
         BaseResponse<CreateUserResponse> response = new BaseResponse<>();
         response.setMessage("Success create user");

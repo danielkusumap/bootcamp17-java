@@ -26,3 +26,6 @@ spring:
 
     # Memberitahu Hibernate "dialek" SQL mana yang digunakan (PostgreSQL)
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 9123
